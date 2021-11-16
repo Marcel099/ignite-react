@@ -1,0 +1,7 @@
+
+SASS instalado como dependência de produção no Next
+
+Olá, devs!
+
+Notei que nesta aula de _NextJS_ o Diego instalou o _SASS_, no minuto 6:45, como uma dependência de produção através do comando `yarn add sass`. Estranhei isso já que o _SASS_ é um pré-processador _CSS_.
+Isso é justificado por alguma maneira do _NextJS_ funcionar? Algum tipo de requisito? Talvez o _Next_ precise converter de _SASS_ pra _CSS_ até mesmo em ambiente de produção? Eu gostaria de entender melhor.
