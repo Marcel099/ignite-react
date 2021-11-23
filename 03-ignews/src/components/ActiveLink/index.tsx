@@ -14,12 +14,17 @@ export function ActiveLink({
 }: ActiveLinkProps) {
   const { asPath } = useRouter()
 
-  const className = asPath === rest.href
-    ? activeClassName
-    : ''
+  let className: string;
+  
+  if (asPath === rest.href
+   || rest.href === '/posts' && asPath.includes('/posts')) {
+    className = activeClassName
+  } else {
+    className = ''
+  }
   
   return (
-    <Link href="/posts" {...rest}>
+    <Link {...rest}>
       {cloneElement(children, {
         className,
       })}
