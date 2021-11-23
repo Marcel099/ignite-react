@@ -25,8 +25,8 @@ export default NextAuth({
                   'ref',
                   q.Get(
                     q.Match(
-                      q.Index('user_by_email',
-                      q.Casefold(session.user.email))
+                      q.Index('user_by_email'),
+                      q.Casefold(session.user.email)
                     )
                   )
                 )
@@ -41,12 +41,14 @@ export default NextAuth({
 
         return {
           ...session,
-          activeSubscrition: userActiveSubscription,
+          activeSubscription: userActiveSubscription,
         }
-      } catch {
+      } catch (err) {
+        console.error(err)
+
         return {
           ...session,
-          activeSubscrition: null,
+          activeSubscription: null,
         }
       }
     },
