@@ -3,8 +3,8 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useForm, SubmitHandler } from 'react-hook-form'
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
+// import * as yup from 'yup';
+// import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Form/Input";
@@ -17,19 +17,19 @@ type CreateUserFormData = {
   password_confirmation: string
 }
 
-const createUserFormSchema = yup.object().shape({
-  name: yup.string().required('Nome obrigatório'),
-  email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
-  password: yup.string().required('Senha obrigatória').min(6, 'No mínimo 6 caracteres'),
-  password_confirmation: yup.string().oneOf([
-    null, yup.ref('password')
-  ], 'As senhas precisam ser iguais').required('Confirmação de senha obrigatória'),
-})
+// const createUserFormSchema = yup.object().shape({
+//   name: yup.string().required('Nome obrigatório'),
+//   email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
+//   password: yup.string().required('Senha obrigatória').min(6, 'No mínimo 6 caracteres'),
+//   password_confirmation: yup.string().oneOf([
+//     null, yup.ref('password')
+//   ], 'As senhas precisam ser iguais').required('Confirmação de senha obrigatória'),
+// })
 
 export default function CreateUser() {
-  const { register, handleSubmit, formState } = useForm({
-    resolver: yupResolver(createUserFormSchema),
-  })
+  const { register, handleSubmit, formState } = useForm(
+    // { resolver: yupResolver(signInFormSchema) }
+  )
 
   const { errors } = formState
 
