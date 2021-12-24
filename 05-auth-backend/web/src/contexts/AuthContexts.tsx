@@ -4,7 +4,7 @@ import {
 import Router from 'next/router'
 import { setCookie, parseCookies, destroyCookie } from 'nookies'
 
-import { api } from "../services/axios";
+import { api } from "../services/apiClient";
 
 type User = {
   email: string
