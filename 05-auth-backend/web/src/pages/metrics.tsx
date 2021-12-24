@@ -5,27 +5,15 @@ import { api } from "../services/apiClient"
 import { setupAPIClient } from "../services/axios"
 
 import { useAuth } from "../contexts/AuthContexts"
+import { useCan } from "../hooks/useCan"
 import { withSSRAuth } from "../utils/withSRRAuth"
-import { Can } from "../components/Can"
 
 export default function Dashboard() {
-  const { user, isAuthenticated, signOut } = useAuth()
-
-  useEffect(() => {
-    api.get('/me')
-      .then(console.log)
-      .catch(console.log)
-  })
+  const { user, isAuthenticated } = useAuth()
 
   return (
     <>
-      <h1>Dashboard {user?.email}</h1>
-
-      <button onClick={() => signOut()}>Sign out</button>
-
-      <Can permissions={['metrics.list']}>
-        <div>Métricas</div>
-      </Can>
+      <h1>Metrics</h1>
     </>
   )
 }
@@ -34,7 +22,12 @@ export const getServerSideProps: GetServerSideProps = withSSRAuth(async (ctx) =>
   const apiClient = setupAPIClient(ctx)
   const response = await apiClient.get('/me')
 
+  
+
   return {
     props: {}
   }
+}, {
+  permissions: ['metrics.list'],
+  roles: ['administrator']
 })
