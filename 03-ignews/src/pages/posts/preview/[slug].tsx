@@ -71,7 +71,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   if ( slug === 'favicon.png' ) {
     return {
       redirect: {
-        destination: '/',
+        destination: '/favicon.png',
         permanent: false,
       }
     }
