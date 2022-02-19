@@ -10,8 +10,6 @@ import styles from '../post.module.scss'
 import { useEffect } from "react"
 import { useRouter } from "next/router"
 
-// Dúvida: No tempo 00:59 da aula "Página: Preview do post", o VSCode do Diego apitou um erro de arquivo SCSS não encontrado, mas o meu não. Por acaso foi algum golpe de sorte? Ou ele usa alguma extensão que permite verificar se o arquivo SCSS existe e não está sendo mal-importado?
-
 type PostPreviewProps = {
   post: {
     slug: string
@@ -58,6 +56,11 @@ export default function PostPreview({ post }: PostPreviewProps) {
   )
 }
 
+interface PrismicResponse {
+  title: any
+  content: Array<any>
+}
+
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
@@ -79,7 +82,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const prismic = getPrismicClient()
 
-  const response = await prismic.getByUID('post', String(slug), {})
+  const response = await prismic.getByUID<PrismicResponse>('post', String(slug), {})
 
   const post = {
     slug,
