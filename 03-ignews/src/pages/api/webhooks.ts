@@ -42,6 +42,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         buf, secret, process.env.STRIPE_WEBHOOK_SECRET
       )
     } catch (err) {
+      console.log(err.message)
       return res.status(400).send(`Webhook error: ${err.message}`)
     }
 
@@ -74,6 +75,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             throw new Error('Unhandled event.')
         }
       } catch (err) {
+        console.log(err)
         return res.status(500).json({ error: 'Webhook handler failed.'})
       }
     }
