@@ -41,8 +41,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       event = stripe.webhooks.constructEvent(
         buf, secret, process.env.STRIPE_WEBHOOK_SECRET
       )
+      console.error('evento transformado com sucesso')
     } catch (err) {
-      console.log(err.message)
+      console.error('falha ao transformar evento')
+      console.error(err.message)
       return res.status(400).send(`Webhook error: ${err.message}`)
     }
 
@@ -75,7 +77,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             throw new Error('Unhandled event.')
         }
       } catch (err) {
-        console.log(err)
+        console.error(err)
         return res.status(500).json({ error: 'Webhook handler failed.'})
       }
     }
