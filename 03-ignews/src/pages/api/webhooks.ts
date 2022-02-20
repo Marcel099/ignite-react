@@ -37,18 +37,26 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     let event: Stripe.Event;
 
+    console.log({
+      webhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
+      secret,
+      buf,
+    })
+
     try {
       event = stripe.webhooks.constructEvent(
         buf, secret, process.env.STRIPE_WEBHOOK_SECRET
       )
-      console.error('evento transformado com sucesso')
+      console.log('evento transformado com sucesso')
     } catch (err) {
-      console.error('falha ao transformar evento')
+      console.log('falha ao transformar evento')
       console.error(err.message)
       return res.status(400).send(`Webhook error: ${err.message}`)
     }
 
     const { type } = event;
+
+    console.log({type})
 
     if ( relevantEvents.has(type) ) {
       try {
@@ -82,7 +90,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       }
     }
 
-    res.json({ received: true})
+    res.json({ received: true })
   } else {
     res.setHeader('Allow', 'POST')
     res.status(405).end('Method not allowed')
