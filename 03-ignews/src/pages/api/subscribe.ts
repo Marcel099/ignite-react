@@ -52,8 +52,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         customerId = stripeCustomer.id
       }
 
-      console.log('ANTES_DE_CRIAR_A_CHECKOUT_SESSION')
-
       const stripeCheckoutSession = await stripe.checkout.sessions.create({
         customer: customerId,
         payment_method_types: ['card'],
@@ -66,8 +64,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         success_url: process.env.STRIPE_SUCCESS_URL,
         cancel_url: process.env.STRIPE_CANCEL_URL,
       })
-
-      console.log('DEPOIS_DE_CRIAR_A_CHECKOUT_SESSION')
 
       return res.status(200).json({ sessionId: stripeCheckoutSession.id })
     } catch(err) {

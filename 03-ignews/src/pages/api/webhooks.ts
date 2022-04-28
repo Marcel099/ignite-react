@@ -37,26 +37,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     let event: Stripe.Event;
 
-    console.log({
-      webhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
-      secret,
-      buf,
-    })
-
     try {
       event = stripe.webhooks.constructEvent(
         buf, secret, process.env.STRIPE_WEBHOOK_SECRET
       )
-      console.log('evento transformado com sucesso')
     } catch (err) {
-      console.log('falha ao transformar evento')
       console.error(err.message)
       return res.status(400).send(`Webhook error: ${err.message}`)
     }
 
     const { type } = event;
-
-    console.log({type})
 
     if ( relevantEvents.has(type) ) {
       try {
