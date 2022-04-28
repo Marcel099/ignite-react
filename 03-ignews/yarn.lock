@@ -2075,10 +2075,10 @@ fastq@^1.6.0:
   dependencies:
     reusify "^1.0.4"
 
-faunadb@^4.4.1:
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/faunadb/-/faunadb-4.5.2.tgz#b58175f2da62d7655e4c13ee0478898d174cbde2"
-  integrity sha512-XQ2yDoPZc5/IqC4eS4tP5tjewFbAK8UdQYLDGlUiJy5E9F3rpvYCMdjlkRWcaxOMD2yPYr8NSoql10zy1CNoCA==
+faunadb@^4.5.4:
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/faunadb/-/faunadb-4.5.4.tgz#9ca4a12faf21a487bfc26d9d3563ff138f2be6fe"
+  integrity sha512-v0e1aXPhitIGMtuC7NFtp//hyr0d2NtHFcGqsEJgWx49rRJoonZQl6hLQ3lBjhA/LPg26U4R/BAlmDFE2pzsUA==
   dependencies:
     base64-js "^1.2.0"
     boxen "^5.0.1"
@@ -3847,7 +3847,7 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-qs@^6.6.0:
+qs@^6.10.3:
   version "6.10.3"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.10.3.tgz#d6cde1b2ffca87b5aa57889816c5f81535e22e8e"
   integrity sha512-wr7M2E0OFRfIfJZjKGieI8lBKb7fRCH4Fv5KNPEs7gJ8jadvotdsS08PzOKR7opXhZ/Xkjtt3WF9g38drmyRqQ==
@@ -4258,13 +4258,13 @@ strip-json-comments@^3.1.0, strip-json-comments@^3.1.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-3.1.1.tgz#31f1281b3832630434831c310c01cccda8cbe006"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
 
-stripe@^8.189.0:
-  version "8.202.0"
-  resolved "https://registry.yarnpkg.com/stripe/-/stripe-8.202.0.tgz#884760713a690983d5a3128ea3cbeb677ee2645f"
-  integrity sha512-3YGHVnUatEn/At5+aRy+REdB2IyVa96/zls2xvQrKFTgaJzRu1MsJcK0GKg0p2B0y0VqlZo9gmdDEqphSHHvtA==
+stripe@^8.219.0:
+  version "8.219.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-8.219.0.tgz#61194756aab3787580154ceccb48692dc0133337"
+  integrity sha512-leQj9h2T4jhEz4Ta4irNTNgErPmXfF9h4nRYblTTrkTqldOmEWZQZIgXkNp1u6/UbOmMDRvxgh57UHyxwwfw0Q==
   dependencies:
     "@types/node" ">=8.1.0"
-    qs "^6.6.0"
+    qs "^6.10.3"
 
 styled-jsx@5.0.0:
   version "5.0.0"
