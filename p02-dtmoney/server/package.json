@@ -7,7 +7,8 @@
     "start": "node dist/src/server.js",
     "build": "tsc --project tsconfig.json",
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/server.ts",
-    "postbuild": "yarn migrate:dev && yarn seed",
+    "postbuild": "yarn migrate:reset && yarn migrate:dev && yarn seed",
+    "migrate:reset": "prisma migrate reset",
     "migrate:dev": "prisma migrate dev",
     "migrate:deploy": "prisma migrate deploy",
     "seed": "prisma db seed"
