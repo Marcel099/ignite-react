@@ -9,3 +9,12 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Transaction {
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(64)
+  type      String   @db.VarChar(8)
+  category  String   @db.VarChar(32)
+  amount    Int
+  createdAt DateTime @default(now())
+}
