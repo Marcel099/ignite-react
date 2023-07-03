@@ -26,7 +26,7 @@ routes.post('/transactions', async (request, response) => {
     amount,
   } = paramsSchema.parse(request.body)
 
-  await prisma.transaction.create({
+  const newTansaction = await prisma.transaction.create({
     data: {
       title,
       type,
@@ -35,7 +35,7 @@ routes.post('/transactions', async (request, response) => {
     }
   })
 
-  return response.status(201).send()
+  return response.status(201).json(newTansaction)
 })
 
 export { routes }

@@ -33,18 +33,22 @@ export function TransactionsProvider({children}: TransactionsProviderProps) {
 
   useEffect(()  => {
     api.get('/transactions')
-      .then(response => setTransactions(response.data.transactions))
+      .then(response => setTransactions(response.data))
+      .catch(() => alert('Erro ao buscar a lista de transações.'))
   }, [])
 
   async function createTransaction(transactionInput: TransactionInput) {
-    const response = await api.post('/transactions', {
-      ...transactionInput,
-      createdAt: new Date(),
-    })
-
-    const { transaction } = response.data
-
-    setTransactions([...transactions, transaction])
+    try {
+      const response = await api.post('/transactions', {
+        ...transactionInput,
+      })
+  
+      const transaction = response.data
+  
+      setTransactions([...transactions, transaction])
+    } catch (error) {
+      alert('Erro ao salvar transação.')
+    }
   }
 
   return (
