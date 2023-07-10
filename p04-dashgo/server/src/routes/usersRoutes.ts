@@ -24,6 +24,22 @@ export async function usersRoutes(app: FastifyInstance) {
 
     return { users, total }
   })
+
+  app.get('/:id', async (req, res) => {
+    const paramsSchema = z.object({
+      id: z.string(),
+    })
+
+    const { id } = paramsSchema.parse(req.params)
+
+    const user = prisma.user.findUniqueOrThrow({
+      where: {
+        id: Number(id)
+      }
+    })
+
+    return user;
+  })
   
   app.post('/', async (req, res) => {
     const bodySchema = z.object({
