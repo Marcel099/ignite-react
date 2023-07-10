@@ -12,7 +12,7 @@ import { api } from '../../services/axios'
 import { queryClient } from "../../services/queryClient";
 
 import { Header } from "../../components/Header";
-import { Input } from "../../components/Form/Input";
+import { Input } from "../../components/form/Input";
 import { Sidebar } from "../../components/Sidebar";
 
 type CreateUserFormData = {
@@ -38,7 +38,6 @@ export default function CreateUser() {
     await api.post('users', {
       user: {
         ...user,
-        created_at: new Date(),
       },
     })
   }, {

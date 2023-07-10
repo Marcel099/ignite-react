@@ -123,7 +123,7 @@ export default function UserList(/* { users, totalCount }: UserListProps */) {
                             </Text>
                           </Box>
                         </Td>
-                        { isWideVersion && <Td>{user.created_at}</Td> }
+                        { isWideVersion && <Td>{user.createdAt}</Td> }
                         { isWideVersion && (
                           <Td>
                             <Button

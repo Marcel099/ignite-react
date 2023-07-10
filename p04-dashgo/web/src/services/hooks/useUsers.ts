@@ -7,7 +7,7 @@ type User = {
   id: string
   name: string
   email: string
-  created_at: string
+  createdAt: string
 }
 
 type GetUsersResponse = {
@@ -15,20 +15,25 @@ type GetUsersResponse = {
   users: User[]
 }
 
+type UsersResponse = {
+  users: User[]
+  total: number
+}
+
 export async function getUsers(page: number): Promise<GetUsersResponse> {
-  const { data, headers } = await api.get<User[]>('users', {
+  const { data } = await api.get<UsersResponse>('users', {
     params: {
       page,
     }
   })
 
-  const totalCount = Number( headers['x-total-count'] )
+  const totalCount = data.total
 
-  const users = data.map(user => ({
+  const users = data.users.map(user => ({
     id: user.id,
     name: user.name,
     email: user.email,
-    created_at: new Date(user.created_at).toLocaleDateString('pt-BR', {
+    createdAt: new Date(user.createdAt).toLocaleDateString('pt-BR', {
       day: '2-digit',
       month: 'long',
       year: 'numeric',

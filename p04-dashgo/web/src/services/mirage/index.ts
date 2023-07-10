@@ -4,7 +4,7 @@ import faker from 'faker'
 type User = {
   name: string
   email: string
-  created_at: string
+  createdAt: string
 }
 
 export function makeServer() {
