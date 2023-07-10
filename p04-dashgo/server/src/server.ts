@@ -1,5 +1,8 @@
 import Fastify from 'fastify'
 import cors from '@fastify/cors'
+import { ZodError } from 'zod'
+
+import { usersRoutes } from './routes/usersRoutes'
 
 const app = Fastify()
 
@@ -7,8 +10,22 @@ app.register(cors, {
   origin: true,
 })
 
-app.get('/', async (req, res) => {
-  return { hello: 'world' }
+app.register(usersRoutes, {
+  prefix: '/users'
+})
+
+app.setErrorHandler(function (error, req, res) {
+  if (error instanceof ZodError) {
+    console.log(error)
+    res.status(400).send({
+      statusCode: 400,
+      error: 'Bad Request',
+      message: 'Os dados enviados são inválidos.',
+      issues: error.issues,
+    })
+  }
+
+  res.status(500).send(error)
 })
 
 app
