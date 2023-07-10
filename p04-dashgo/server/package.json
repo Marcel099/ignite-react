@@ -4,7 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "start": "node dist/src/server.js",
+    "build": "tsc --project tsconfig.json",
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "postbuild": "yarn migrate:deploy",
     "migrate:reset": "prisma migrate reset",
     "migrate:dev": "prisma migrate dev",
     "migrate:deploy": "prisma migrate deploy",

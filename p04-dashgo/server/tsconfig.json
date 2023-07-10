@@ -14,5 +14,11 @@
     "compilerOptions": {
       "module": "CommonJS"
     }
-  }
+  },
+  "include" : [
+    "./**/*.ts"
+  ],
+  "exclude" : [
+    "./node_modules"
+  ]
 }
