@@ -51,7 +51,6 @@ export function Pagination({
       mt="8"
       justify="space-between"
       align="center"
-      space="6"
     >
       <Box>
         <strong>

@@ -11,7 +11,7 @@ import { NavSection } from "./NavSection";
 
 export function SidebarNav() {
   return (
-    <Stack spacing="12" alin="flex-start">
+    <Stack spacing="12" align="flex-start">
       <NavSection title="GERAL">
         <NavLink href="/" icon={RiDashboardLine}>Dashboard</NavLink>
         <NavLink href="/users" icon={RiContactsLine}>Usuários</NavLink>
