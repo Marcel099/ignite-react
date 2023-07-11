@@ -30,8 +30,9 @@ app.setErrorHandler(function (error, req, res) {
 
 app
   .listen({
+    host: ('RENDER' in process.env) ? '0.0.0.0' : 'localhost',
     port: Number(process.env.PORT) || 3333
   })
   .then(() => {
-    console.log('HTTP server running on port 3333')
+    console.log('HTTP server running')
   })
