@@ -1,81 +1,95 @@
-import {
-  Flex,
-  Button,
-  Stack,
-} from '@chakra-ui/react'
-import { useForm, SubmitHandler } from 'react-hook-form'
-// import * as yup from 'yup';
-// import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
-import { Input } from '../components/form/Input'
+import { Box, Flex, SimpleGrid, Text, theme } from "@chakra-ui/react";
+import { Props } from 'react-apexcharts'
 
-type SignInFormData = {
-  email: string
-  password: string
+import dynamic from 'next/dynamic';
+
+import { Header } from "../components/Header";
+import { Sidebar } from "../components/Sidebar";
+
+
+const Chart = dynamic(() => import('react-apexcharts'), {
+  ssr: false,
+})
+
+const options: Props["options"] = {
+  chart: {
+    toolbar: {
+      show: false,
+    },
+    zoom: {
+      enabled: false,
+    },
+    foreColor: theme.colors.gray[500],
+  },
+  grid: {
+    show: false,
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  tooltip: {
+    enabled: false,
+  },
+  xaxis: {
+    type: 'datetime',
+    axisBorder: {
+      color: theme.colors.gray[600],
+    },
+    axisTicks: {
+      color: theme.colors.gray[600],
+    },
+    categories: [
+      '2021-12-15T00:00:00.000Z',
+      '2021-12-16T00:00:00.000Z',
+      '2021-12-17T00:00:00.000Z',
+      '2021-12-18T00:00:00.000Z',
+      '2021-12-19T00:00:00.000Z',
+      '2021-12-20T00:00:00.000Z',
+      '2021-12-21T00:00:00.000Z',
+    ],
+  },
+  fill: {
+    opacity: 0.3,
+    type: 'gradient',
+    gradient: {
+      shade: 'dark',
+      opacityFrom: 0.7,
+      opacityTo: 0.3,
+    }
+  }
 }
 
-// const signInFormSchema = yup.object().shape({
-//   email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
-//   password: yup.string().required('Senha obrigatória'),
-// })
+const series = [
+  { name: 'series1', data: [31, 120, 10, 28, 51, 18, 109]},
+]
 
-export default function SignIn() {
-  const { register, handleSubmit, formState } = useForm(
-    // { resolver: yupResolver(signInFormSchema) }
-  )
-
-  const { errors } = formState
-  
-  const handleSignIn: SubmitHandler<SignInFormData> = async data => {
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    console.log(data)
-  }
-
+export default function Dashboard() {
   return (
-    <Flex
-      w="100vw"
-      h="100vh"
-      align="center"
-      justify="center"
-    >
-      <Flex
-        as="form"
-        width="100%"
-        maxWidth={360}
-        bg="gray.800"
-        p="8"
-        borderRadius={8}
-        flexDir="column"
-        onSubmit={handleSubmit(handleSignIn)}
-      >
-        <Stack
-          spacing="4"
-        >
-          <Input
-            name="email"
-            label="E-mail"
-            type="email"
-            error={errors.email}
-            {...register('email')}
-          />
-          <Input
-            name="password"
-            label="Senha"
-            type="password"
-            error={errors.password}
-            {...register('password')}
-          />
-        </Stack>
+    <Flex direction="column" h="100vh">
+      <Header />
+      <Flex w="100%" my="6" maxWidth={1400} mx="auto" px="6">
+        <Sidebar />
 
-        <Button
-          type="submit"
-          mt="6"
-          colorScheme="pink"
-          size="lg"
-          isLoading={formState.isSubmitting}
-        >
-          Entrar
-        </Button>
+        <SimpleGrid flex="1" gap="4" minChildWidth="320px">
+          <Box
+            p={["6", "8"]}
+            bg="gray.800"
+            borderRadius={8}
+            pb="4"
+          >
+            <Text fontSize="lg" mb="4">Inscritos da semana</Text>
+            <Chart options={options} series={series} type="area" height={168} />
+          </Box>
+          <Box
+            p={["6", "8"]}
+            bg="gray.800"
+            borderRadius={8}
+            pb="4"
+          > 
+            <Text fontSize="lg" mb="4">Taxa de abertura</Text>
+            <Chart options={options} series={series} type="area" height={168} />
+          </Box>
+        </SimpleGrid>
       </Flex>
     </Flex>
   )
